@@ -1,0 +1,45 @@
+@import './global/reset';
+@import './global/variables';
+
+@font-face {
+  font-family: "fontello";
+  src: url("%PUBLIC_URL%/assets/fonts/fontello/fontello.ttf") format("ttf"),
+    url("%PUBLIC_URL%/assets/fonts/fontello/fontello.woff") format("woff"),
+    url("%PUBLIC_URL%/assets/fonts/fontello/fontello.woff2") format("woff2"),
+    url("%PUBLIC_URL%/assets/fonts/fontello/fontello.eot") format("eot"),
+    url("%PUBLIC_URL%/assets/fonts/fontello/fontello.svg") format("svg");
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: neue-haas-grotesk-display, sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  color: $darkGrey;
+  background: $orange;
+}
+
+.App {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  // padding: 100px 20px 20px;
+  padding: 30px 20px 20px;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-size: 40px;
+  font-weight: 600;
+  color: $white;
+}

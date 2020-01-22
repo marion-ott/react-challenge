@@ -1,0 +1,366 @@
+@import './../global/variables';
+
+/** HEADER COMPONENT */
+.Header {
+  // position: fixed;
+  // top: 0;
+  // left: 50%;
+  // -webkit-transform: translateX(-50%);
+  // transform: translateX(-50%);
+  margin: 0 auto;
+
+  &.wrapper {
+    padding-top: 0;
+  }
+
+  &-nav {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $white;
+    border-bottom: 1px solid rgba($color: $white, $alpha: 0.3);
+  }
+
+  div,
+  li {
+    padding-bottom: 9px;
+    border-bottom: 2px solid rgba($color: $white, $alpha: 0);
+    -webkit-transition: ease .2s all;
+    transition: ease .2s all;
+  }
+
+  li:not(:first-child) {
+    margin-left: 20px;
+  }
+
+  li.active,
+  div.active,
+  li:hover,
+  div:hover {
+    border-bottom: 2px solid rgba($color: $white, $alpha: 0.8);
+  }
+
+  &-links {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+  }
+}
+
+/** LISTITEM COMPONENT */
+.StudentItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 45px;
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  -webkit-transition: ease .2s all;
+  transition: ease .2s all;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  &-cellName {
+    margin-left: 25px;
+    color: #4F4F4F;
+    font-weight: bold;
+    -ms-flex-item-align: center;
+    align-self: center;
+    -webkit-box-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+  }
+
+  &-cellGroup {
+    font-weight: 300;
+    color: #4F4F4F;
+    -ms-flex-item-align: center;
+    align-self: center;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+
+  &-cellJob {
+    margin-right: 25px;
+    font-weight: 300;
+    color: #4F4F4F;
+    -ms-flex-item-align: center;
+    align-self: center;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+}
+
+
+/** CARD COMPONENT */
+.Card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  max-width: 430px;
+  border-radius: 10px;
+  width: 40%;
+  min-height: 400px;
+  background-color: $white;
+
+  &-banner {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+    height: 160px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: $lightGrey;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  &-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    margin-top: calc(-124px/2);
+    padding: 0 20px 40px;
+    
+    .row span {
+      display: inline-block;
+      font-weight: 600;
+      color: $lightGrey;
+      margin-bottom: 5px;
+    }
+
+    .row:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    a {
+      display: block;
+      color: $blue;
+    }
+
+    input {
+      background-color: #F2F2F2;
+      border-radius: 8px;
+      height: 40px;
+      padding: 5px 10px;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &-picture {
+    margin: 0 auto;
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    background-image: url('/assets/images/hetic_logo.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+
+  h4 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  p.edit {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+}
+
+
+/** PROFILE COMPONENT */
+.Profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  
+  &-skills {
+    width: 60%;
+    padding: 0 30px;
+
+    .EditContainer {
+      position: absolute;
+      top: 16px;
+      right: 36px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer;
+      color: $white;
+      font-size: 15px;
+      font-weight: 600;
+
+      &>* {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+
+        &:after {
+          font-family: 'fontello';
+          display: block;
+          margin-left: 10px;
+        }
+      }
+
+      .Edit:after {
+        content: '';
+        margin-top: -2px;
+        width: 20px;
+        height: 20px;
+        background-image: url('/assets/images/edit.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .Cancel {
+        margin-right: 24px;
+
+        &:after {
+          content: '\E805';
+          font-size: 20px;
+        }
+      }
+
+      .Submit:after {
+        content: '\E804';
+        font-size: 20px;
+      }
+    }
+
+  }
+  &-list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 1200px) {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+  }
+}
+
+
+
+/** SKILL COMPONENT */
+.CardSkill {
+  padding: 20px 0;
+  margin-bottom: 16px;
+  width: calc(50% - 20px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  color: $white;
+  border-radius: 13px;
+
+  &.user {
+    border: 1px solid #DA643A;
+    background: #FF885F;
+  }
+
+  &.superadmin {
+    border: 1px solid #096FAC;
+    background: #27A3ED;
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
+
+  .Note {
+    margin-left: 20px;
+    font-size: 40px;
+  }
+
+  select {
+    color: $darkgrey;
+    height: 40px;
+    width: 50px;
+  }
+}
