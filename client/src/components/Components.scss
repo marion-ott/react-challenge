@@ -1,116 +1,5 @@
 @import './../global/variables';
 
-/** HEADER COMPONENT */
-.Header {
-  // position: fixed;
-  // top: 0;
-  // left: 50%;
-  // -webkit-transform: translateX(-50%);
-  // transform: translateX(-50%);
-  margin: 0 auto;
-
-  &.wrapper {
-    padding-top: 0;
-  }
-
-  &-nav {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding-top: 30px;
-    font-size: 18px;
-    font-weight: 600;
-    color: $white;
-    border-bottom: 1px solid rgba($color: $white, $alpha: 0.3);
-  }
-
-  div,
-  li {
-    padding-bottom: 9px;
-    border-bottom: 2px solid rgba($color: $white, $alpha: 0);
-    -webkit-transition: ease .2s all;
-    transition: ease .2s all;
-  }
-
-  li:not(:first-child) {
-    margin-left: 20px;
-  }
-
-  li.active,
-  div.active,
-  li:hover,
-  div:hover {
-    border-bottom: 2px solid rgba($color: $white, $alpha: 0.8);
-  }
-
-  &-links {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    height: 100%;
-  }
-}
-
-/** LISTITEM COMPONENT */
-.StudentItem {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 45px;
-  background-color: white;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  font-size: 16px;
-  -webkit-transition: ease .2s all;
-  transition: ease .2s all;
-  cursor: pointer;
-
-  &:hover {
-    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2);
-  }
-
-  &-cellName {
-    margin-left: 25px;
-    color: #4F4F4F;
-    font-weight: bold;
-    -ms-flex-item-align: center;
-    align-self: center;
-    -webkit-box-flex: 2;
-    -ms-flex: 2;
-    flex: 2;
-  }
-
-  &-cellGroup {
-    font-weight: 300;
-    color: #4F4F4F;
-    -ms-flex-item-align: center;
-    align-self: center;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-  }
-
-  &-cellJob {
-    margin-right: 25px;
-    font-weight: 300;
-    color: #4F4F4F;
-    -ms-flex-item-align: center;
-    align-self: center;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-  }
-}
-
-
 /** CARD COMPONENT */
 .Card {
   display: -webkit-box;
@@ -200,101 +89,135 @@
     font-weight: 600;
     font-size: 24px;
   }
-
-  p.edit {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-  }
 }
 
 
 /** PROFILE COMPONENT */
 .Profile {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
+  &-back {
+    color: $white;
+    font-size: 12px;
+    font-weight: 600;
+    margin: -20px 0 25px;
+    padding-left: 20px;
+    cursor: pointer;
+    &:hover {
+      p:after {
+        right: calc(100% + 10px);
+      }
+    }
+    p {
+      display: inline;
+      position: relative;
+      &:after {
+        content: '←';
+        font-size: 16px;
+        line-height: 0;
+        position: absolute;
+        top: 54%;
+        right: calc(100% + 5px);
+        transition: ease .2s all;
+      }
+    }
+  }
+  &-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+  }
   
   &-skills {
     width: 60%;
     padding: 0 30px;
+    
+    h2 {
+      clear: both;
+    }
+  }
+  .EditContainer {
+    float: right;
+    margin-bottom: 50px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: $white;
+    font-size: 15px;
+    font-weight: 600;
 
-    .EditContainer {
-      position: absolute;
-      top: 16px;
-      right: 36px;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: start;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+    &>* {
+      opacity: 0.8;
+      transition: ease .2s all;
       cursor: pointer;
-      color: $white;
-      font-size: 15px;
-      font-weight: 600;
 
-      &>* {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: start;
-        -ms-flex-pack: start;
-        justify-content: flex-start;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-
+      &:hover {
+        opacity: 1;
         &:after {
-          font-family: 'fontello';
-          display: block;
-          margin-left: 10px;
+          animation: bounce .2s linear forwards;
         }
       }
 
-      .Edit:after {
-        content: '';
-        margin-top: -2px;
-        width: 20px;
-        height: 20px;
-        background-image: url('/assets/images/edit.png');
-        background-size: contain;
-        background-repeat: no-repeat;
+      &:after {
+        font-family: 'fontello';
+        display: inline-block;
+        margin-left: 10px;
+        transform: translateY(2px);
       }
 
-      .Cancel {
-        margin-right: 24px;
+      @keyframes bounce {
 
-        &:after {
-          content: '\E805';
-          font-size: 20px;
+        0% {
+          -webkit-transform: translateY(2px);
+          -ms-transform: translateY(2px);
+          transform: translateY(2px)
+        }
+
+        50% {
+          -webkit-transform: translateY(-2px);
+          -ms-transform: translateY(-2px);
+          transform: translateY(-2px)
+        }
+
+        100% {
+          -webkit-transform: translateY(2px);
+          -ms-transform: translateY(2px);
+          transform: translateY(2px)
         }
       }
+    }
 
-      .Submit:after {
-        content: '\E804';
+    .Edit:after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-image: url('/assets/images/edit.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      
+    }
+
+    .Cancel {
+      margin-right: 24px;
+
+      &:after {
+        content: '\E805';
         font-size: 20px;
       }
     }
 
+    .Submit:after {
+      content: '\E804';
+      font-size: 20px;
+    }
   }
+  
   &-list {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -317,50 +240,3 @@
   }
 }
 
-
-
-/** SKILL COMPONENT */
-.CardSkill {
-  padding: 20px 0;
-  margin-bottom: 16px;
-  width: calc(50% - 20px);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 600;
-  color: $white;
-  border-radius: 13px;
-
-  &.user {
-    border: 1px solid #DA643A;
-    background: #FF885F;
-  }
-
-  &.superadmin {
-    border: 1px solid #096FAC;
-    background: #27A3ED;
-  }
-
-  @media screen and (max-width: 1200px) {
-    width: 100%;
-  }
-
-  .Note {
-    margin-left: 20px;
-    font-size: 40px;
-  }
-
-  select {
-    color: $darkgrey;
-    height: 40px;
-    width: 50px;
-  }
-}

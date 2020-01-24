@@ -1,5 +1,4 @@
 import React from 'react'
-import './Views.scss'
 // import Form from './../components/Form'
 
 export default () => {

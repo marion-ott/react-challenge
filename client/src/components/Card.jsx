@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import API from './../utils/API'
+import './Components.scss'
 
-export default ({user = null, editMode}) => {
+export default ({user = null, editing}) => {
   const [student, setStudent] = useState(user)
 
   useEffect(_ => {
@@ -24,7 +25,7 @@ export default ({user = null, editMode}) => {
         </div>
         <div className='Card-job row'>
           <span>Poste</span>
-          {editMode ? (
+          {editing ? (
             <p className='edit'>
               <input
                 type='text'
