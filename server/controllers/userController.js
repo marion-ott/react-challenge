@@ -2,43 +2,56 @@ const User = require('./../models/userModel')
 const Skill = require('./../models/skillModel')
 const catchAsync = require('./../services/catchAsync')
 const AppError = require("../services/appError")
+const getSkillData = require("../services/getSkillData")
+
 
 exports.getAllUsers = catchAsync(async (req, res) => {
     const users = await User
-        .find({
-            _id: {
-                $ne: req.user._id
-            }
-        })
+        // .find({
+        //     _id: {
+        //         $ne: req.user._id
+        //     }
+        // })
+        .find({role: {$eq: 'user'}})
         .sort({ 'lastName': 1 })
         .select('-password -role -firstConnection')
+        .lean()
 
-    const currentUser = await User.find(req.user._id)
-    const skills = await Skill.find()
+    // let currentUser = await User.find(req.user._id)
+    const skills = await Skill.find().lean()
+
+    users.forEach(user => {
+        getSkillData(user, skills)
+    })
+
+    // currentUser = getSkillData(currentUser[0], skills)
     
     res.status(200).json({
         status: 'success',
         data: {
             users,
-            currentUser,
+            // currentUser,
             skills
         }
     })
 })
 
 exports.getUser = catchAsync(async (req, res) => {
-    const user = await User.findById(req.params.id)
+    const skills = await Skill.find().lean()
+    let user = null
 
+    if (!req.params.id) {
+        user = req.user
+    }
+    
+    if(!user) {
+        user = await User.findById(req.params.id).lean()
+    }
+
+    user = getSkillData(user, skills)
     res.status(200).json({
         status: 'success',
-        data: {
-            user
-        }
-    })
-
-    return res.status(200).json({
-        status: 'success',
-        data: {}
+        user
     })
 })
 

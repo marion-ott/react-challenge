@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 const ListItem = styled.li`
   display: flex;
   height: 45px;
@@ -17,30 +16,22 @@ const ListItem = styled.li`
   }
 
   .cellName {
-    margin-left: 25px;
-    color: #4f4f4f;
     font-weight: bold;
-    align-self: center;
     flex: 2;
   }
 
   .cellGroup {
     font-weight: 300;
-    color: #4f4f4f;
-    align-self: center;
     flex: 1;
   }
 
   .cellJob {
-    margin-right: 25px;
     font-weight: 300;
-    color: #4f4f4f;
-    align-self: center;
     flex: 1;
   }
 `
 
-export default ({student, onClick}) => {
+export default ({ student, onClick }) => {
   return (
     <ListItem onClick={() => onClick(student._id)}>
       <div className='cellName'>{`${student.firstName} ${student.lastName}`}</div>

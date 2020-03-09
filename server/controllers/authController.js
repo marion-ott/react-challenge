@@ -1,7 +1,7 @@
-const User = require("../models/userModel")
-const jwt = require('jsonwebtoken')
+const User = require("../models/userModel");
+const jwt = require('jsonwebtoken');
 const { promisify } = require('util')
-const config = require("../config/config")
+const config = require("../config/config");
 const catchAsync = require("../services/catchAsync")
 const AppError = require("../services/appError")
 
@@ -11,8 +11,8 @@ const signToken = id => {
         id
     }, config.JWT_SECRET, {
         expiresIn: config.JWT_EXPIRATION_TIME
-    })
-}
+    });
+};
 
 exports.signup = catchAsync(async (req, res) => {
     // Specify each property to avoid user to add unwanted information
@@ -22,12 +22,12 @@ exports.signup = catchAsync(async (req, res) => {
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password
-    })
+    });
 
-    const token = signToken(newUser._id)
+    const token = signToken(newUser._id);
 
     res.status(200).json({
-        status: "success",
+        status: "Succès",
         data: {
             user: newUser
         },
@@ -40,11 +40,11 @@ exports.login = catchAsync(async (req, res, next) => {
         password,
         email,
         role
-    } = req.body
+    } = req.body;
 
     if (!email || !password) {
         //Le cas où l'email ou bien le password ne serait pas soumit ou nul
-        return next(new AppError('Veuillez entrer votre identifiant et votre mot de passe'), 400)
+        return next(new AppError('Veuillez entrer votre identifiant et votre mot de passe'), 400);
     }
 
     // On check si l'utilisateur existe en base
@@ -53,48 +53,49 @@ exports.login = catchAsync(async (req, res, next) => {
     })
 
     if (!user || !(await user.authenticate(password, user.password))) {
-        return next(new AppError('E-mail ou mot de passe incorrect'), 401)
+        return next(new AppError('E-mail ou mot de passe incorrect'), 401);
     }
 
     if(user.role !== role) {
         return next(new AppError('Vous n\'avez pas sélectionné le bon profil.'))
     }
     
-    const token = signToken(user._id)
+    const token = signToken(user._id);
 
     res.status(200).json({
         status: 'success',
         token,
-        user
-    })
+        userId: user._id
+    });
 })
 
 exports.checkLogIn = catchAsync(async (req, res, next) => {
-    let token
+    let token;
 
     if (req.headers.authorization) {
-        token = req.headers.authorization
+        token = req.headers.authorization;
     }
 
     if (!token) {
-        return next(new AppError('Vous n\'êtes pas connecté.'), 401)
+        return next(new AppError('Vous n\'êtes pas connecté.'), 401);
     }
 
     // Token verification
-    const decoded = await promisify(jwt.verify)(token, config.JWT_SECRET)
+    const decoded = await promisify(jwt.verify)(token, config.JWT_SECRET);
 
-    const currentUser = await User.findById(decoded.id)
+    const currentUser = await User.findById(decoded.id).lean();
     if (!currentUser) {
-        return next(new AppError('Cet utilisateur n\'existe pas ou n\'est pas connecté.'), 401)
+        return next(new AppError('Cet utilisateur n\'existe pas ou n\'est pas connecté.'), 401);
     }
     
-    req.user = currentUser
+    req.user = currentUser;
+    
     next()
 })
 
 exports.protect = catchAsync(async (req, res, next) => {
     if ((req.user.role !== 'admin' && req.user.role !== 'superadmin')) {
-        return next(new AppError('Vous n\'avez pas les droits pour effectuer cette action.'), 401)
+        return next(new AppError('Vous n\'avez pas les droits pour effectuer cette action.'), 401);
     }
 
     next()

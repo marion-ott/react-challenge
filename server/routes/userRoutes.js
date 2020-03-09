@@ -5,6 +5,10 @@ const authController = require('../controllers/authController')
 
 router
     .route('/')
+    .get(authController.checkLogIn, userController.getUser)
+
+router
+    .route('/all')
     .get(authController.checkLogIn, userController.getAllUsers)
 
 router

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
 import styled from 'styled-components'
 import variables from './../global/variables.scss'
@@ -10,7 +10,6 @@ import Input from './../ui/Input'
 import Title from './../ui/Title'
 import formData from '../utils/formData'
 
-
 const List = styled.div`
   margin: 0 auto;
   width: 100%;
@@ -20,8 +19,6 @@ const List = styled.div`
   }
 
   .table {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     margin-bottom: 24px;
     font-weight: bold;
@@ -31,59 +28,50 @@ const List = styled.div`
   }
 
   .cellName {
-    -webkit-box-flex: 2;
-    -ms-flex: 2;
     flex: 2;
   }
 
   .cellGroup {
     margin-left: 25px;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
     flex: 1;
   }
 
   .cellJob {
     margin-right: 25px;
-    -webkit-box-flex: 1;
-    -ms-flex: 1;
     flex: 1;
   }
 `
 
-
 const fields = formData.search
 
-export default withRouter((props) => {
+export default withRouter(props => {
   const [students, setStudents] = useState(null)
   const [list, setList] = useState(null)
   const [student, setStudent] = useState(null)
   const [displayList, setDisplayList] = useState(true)
 
-  useEffect(
-    _ => {
-      (async function getData() {
-        await API.getAllUsers()
-          .then(response => {
-            setStudents(response.data.data.users)
-            setList(response.data.data.users)
-          })
-      })()
-    },
-    []
-  )
+  useEffect(_ => {
+    ;(async function getData() {
+      await API.getAllUsers().then(response => {
+        setStudents(response.data.data.users)
+        setList(response.data.data.users)
+      })
+    })()
+  }, [])
 
   const onClick = id => {
     const selectedStudent = list.find(student => student._id === id)
-    const url = selectedStudent.email.replace('@hetic.net', '').replace('.', '-')
+    const url = selectedStudent.email
+      .replace('@hetic.net', '')
+      .replace('.', '-')
     props.history.push(`/list/${url}`)
     setStudent(selectedStudent)
     setDisplayList(false)
   }
 
-  const onChange = (e) => {
+  const onChange = e => {
     const searchValue = e.target.value.toLowerCase()
-    if(searchValue === '') {
+    if (searchValue === '') {
       setList(students)
       return false
     }
@@ -94,7 +82,7 @@ export default withRouter((props) => {
         student.lastName.toLowerCase().startsWith(searchValue) ||
         student.occupation.toLowerCase().includes(searchValue)
     )
-    
+
     setList(filteredList)
   }
 
@@ -103,17 +91,13 @@ export default withRouter((props) => {
     setDisplayList(true)
   }
 
-  if(list === null) {
-    return (
-      <Loader />
-    )
+  if (list === null) {
+    return <Loader />
   }
 
   // TODO: either change route on click or allow list display on list nav btn clicked
-  if(!displayList && student) {
-    return (
-      <Profile id={student._id} backToList={backToList} />
-    )
+  if (!displayList && student) {
+    return <Profile id={student._id} backToList={backToList} />
   }
 
   return (

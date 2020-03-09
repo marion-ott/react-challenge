@@ -73,4 +73,28 @@ userSchema.methods = {
     }
 };
 
+userSchema.statics.getSkillData = async function (users, skills) {
+    return users.map(user => {
+        user.toObject()
+        return user.skills.map(skill => {
+            skill.toObject()
+            skill['name'] = 'test'
+            return skill
+        })
+        // console.log(user)
+    })
+}
+
+// userSchema.statics.toApiUserSchema = function (data) {
+//     return data.map(function (user) {
+//         return {
+//             email: user.email,
+//             username: user.username,
+//             emailAndUsername: user.email + user.username
+//         }
+//     })
+// }
+
+
 module.exports = mongoose.model("User", userSchema);
+ 
