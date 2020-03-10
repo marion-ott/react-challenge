@@ -1,46 +1,46 @@
-version: "3"
+version: '3'
 services:
-        client:
-                image: node:10
-                restart: always
-                ports:
-                        - "3000:3000"
-                working_dir: /usr/src/app
-                volumes:
-                        - ./client:/usr/src/app
-                        - /client/node_modules
-                links: 
-                        - api
-                networks: 
-                        - webappnetwork
-                entrypoint: ["npm", "start"]
+  client:
+    image: node:10
+    restart: always
+    ports:
+      - '3000:3000'
+    working_dir: /usr/src/app
+    volumes:
+      - ./client:/usr/src/app
+      - /client/node_modules
+    links:
+      - api
+    networks:
+      - webappnetwork
+    entrypoint: ['npm', 'start']
 
-        api:
-                image: node:10
-                restart: always
-                ports: 
-                        - "9000:9000"
-                working_dir: /usr/src/app
-                volumes: 
-                        - ./server:/usr/src/app
-                        - /server/node_modules
-                depends_on: 
-                        - mongodb
-                networks: 
-                        - webappnetwork
-                entrypoint: ["npm", "start"]
-        
-        mongodb: 
-                image: mongo:3.2
-                restart: always
-                container_name: mongodb
-                volumes: 
-                        - ./data-node:/data/db
-                ports: 
-                        - "27017:27017"
-                networks: 
-                        - webappnetwork
-                
+  api:
+    image: node:10
+    restart: always
+    ports:
+      - '9000:9000'
+    working_dir: /usr/src/app
+    volumes:
+      - ./server:/usr/src/app
+      - /server/node_modules
+    # depends_on:
+    #         - mongodb
+    networks:
+      - webappnetwork
+    entrypoint: ['npm', 'start']
+
+  # mongodb:
+  #         image: mongo:3.2
+  #         restart: always
+  #         container_name: mongodb
+  #         volumes:
+  #                 - ./data-node:/data/db
+  #         ports:
+  #                 - "27017:27017"
+  #         networks:
+  #                 - webappnetwork
+
 networks:
-        webappnetwork:
-                driver: bridge
+  webappnetwork:
+    driver: bridge
